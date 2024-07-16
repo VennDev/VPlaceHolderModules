@@ -14,26 +14,26 @@ $author = "ClickedTran (ClickedTran_VN)";
 #{rsrank} = Ranksystem
 
 VPlaceHolder::registerPlaceHolder("{pprank}", function(string $playerName) : string{
-  $player = Server::getInstance()->getPlayerExtract($playerName);
-  if(is_null($player)) return "none";
+  $player = Server::getInstance()->getPlayerExact($playerName);
+  if($player == null) return "User Not Found!";
   
-  if(Server::getInstance()->getPluginManager()->getPlugin("PurePerms") !== null){
-    $pprank = PurePerms::getInstance()->getUserDataMgr()->getGroup($playerName);
+  if(class_exists(PurePerms::class)){
+    $pprank = PurePerms::getInstance()->getUserDataMgr()->getData($player);
     return $pprank["group"];
   }
   
-  return "none";
+  return "User Not Found!";
 });
 
 VPlaceHolder::registerPlaceHolder("{rsrank}", function(string $playerName) : string {
-  $player = Server::getInstance()->getPlayerExtract($playerName);
+  $player = Server::getInstance()->getPlayerExact($playerName);
   
-  if(is_null($player)) return "none";
+  if($player == null) return "User Not Found!";
   
-  if(Server::getInstance()->getPluginManager()->getPlugin("RankSystem") !== null){
+  if(class_exists(RankSystem::class)){
     $rsrank = RankSystem::getInstance()->getSessionManager()->get($player);
     return Utils::ranks2string($rsrank->getRanks());
   }
   
-  return "none";
+  return "User Not Found!";
 });
