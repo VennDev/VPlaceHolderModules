@@ -31,6 +31,6 @@ VPlaceHolder::registerPlaceHolder("{vpds_get_name_player_by_xuid}", function (st
     return new Async(function () use ($xuid) {
         $data = Async::await(Async::await(VPlayerDataSaver::getDataByXuid($xuid)));
         if ($data instanceof ResultQuery) $data = $data->getResult();
-        return $data["name"];
+        return $data["name"]  ?? "Unknown";
     });
 }, true);
