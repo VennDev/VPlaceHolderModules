@@ -9,27 +9,24 @@ use cooldogedev\bedrockeconomy\BedrockEconomy;
 use cooldogedev\bedrockeconomy\api\BedrockEconomyAPI;
 use DaPigGuy\PiggyEconomy\PiggyEconomy;
 
-# Author Module: Jung Ganmyeon
+$version = "1.0.0";
+$author = "junggamyeon";
 
-# {ecoapi} EconomyAPI
-# {bedrockeco} BedrockEconomyAPI
-# {piggyeco} PiggyEconomy
-
-VPlaceHolder::registerPlaceHolder("{ecoapi}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
-    if ($playerInstance === null) return "0";
+VPlaceHolder::registerPlaceHolder("{ecoapi}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
+    if ($playerInstance === null) return "Plugin not found";
     
     if (class_exists(EconomyAPI::class)) {
         $money = EconomyAPI::getInstance()->myMoney($playerInstance);
         return $money !== false ? (string)$money : "0";
     }
     
-    return "0";
+    return "Plugin not found";
 });
 
-VPlaceHolder::registerPlaceHolder("{bedrockeco}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
-    if ($playerInstance === null) return "0";
+VPlaceHolder::registerPlaceHolder("{bedrockeco}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
+    if ($playerInstance === null) return "Plugin not found";
 
     if (class_exists(BedrockEconomy::class)) {
         $api = BedrockEconomy::getInstance()->getAPI();
@@ -37,17 +34,17 @@ VPlaceHolder::registerPlaceHolder("{bedrockeco}", function (string $player): str
         return $balance !== null ? (string)$balance : "0";
     }
 
-    return "0";
+    return "Plugin not found";
 });
 
-VPlaceHolder::registerPlaceHolder("{piggyeco}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
-    if ($playerInstance === null) return "0";
+VPlaceHolder::registerPlaceHolder("{piggyeco}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
+    if ($playerInstance === null) return "Plugin not found";
 
     if (class_exists(PiggyEconomy::class)) {
         $money = PiggyEconomy::getInstance()->getMoney($playerInstance);
         return $money !== null ? (string)$money : "0";
     }
 
-    return "0";
+    return "Plugin not found";
 });
