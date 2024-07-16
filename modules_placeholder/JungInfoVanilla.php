@@ -6,7 +6,8 @@ use pocketmine\Server;
 use pocketmine\player\Player;
 use venndev\vplaceholder\VPlaceHolder;
 
-# Author Module: Jung Ganmyeon
+$version = "1.0.0";
+$author = "junggamyeon";
 
 # {time_zone}
 # {second}
