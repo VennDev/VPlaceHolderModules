@@ -41,8 +41,8 @@ function getTimeZoneFromIP(string $ip): string {
     return $data['time_zone'] ?? "Timezone not found";
 }
 
-function getTimeForPlayer(string $player, string $format): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
+function getTimeForPlayer(string $playerName, string $format): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
     if ($playerInstance === null) return "Player not found";
 
     $ip = $playerInstance->getAddress();
@@ -52,99 +52,99 @@ function getTimeForPlayer(string $player, string $format): string {
     return $dateTime->format($format);
 }
 
-VPlaceHolder::registerPlaceHolder("{time_zone}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
+VPlaceHolder::registerPlaceHolder("{time_zone}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
     if ($playerInstance === null) return "Player not found";
 
     $ip = $playerInstance->getAddress();
     return getTimeZoneFromIP($ip);
 });
 
-VPlaceHolder::registerPlaceHolder("{second}", function (string $player): string {
-    return getTimeForPlayer($player, "s");
+VPlaceHolder::registerPlaceHolder("{second}", function (string $playerName): string {
+    return getTimeForPlayer($playerName, "s");
 });
 
-VPlaceHolder::registerPlaceHolder("{minute}", function (string $player): string {
-    return getTimeForPlayer($player, "i");
+VPlaceHolder::registerPlaceHolder("{minute}", function (string $playerName): string {
+    return getTimeForPlayer($playerName, "i");
 });
 
-VPlaceHolder::registerPlaceHolder("{hour}", function (string $player): string {
-    return getTimeForPlayer($player, "H");
+VPlaceHolder::registerPlaceHolder("{hour}", function (string $playerName): string {
+    return getTimeForPlayer($playerName, "H");
 });
 
-VPlaceHolder::registerPlaceHolder("{day}", function (string $player): string {
-    return getTimeForPlayer($player, "d");
+VPlaceHolder::registerPlaceHolder("{day}", function (string $playerName): string {
+    return getTimeForPlayer($playerName, "d");
 });
 
-VPlaceHolder::registerPlaceHolder("{month}", function (string $player): string {
-    return getTimeForPlayer($player, "m");
+VPlaceHolder::registerPlaceHolder("{month}", function (string $playerName): string {
+    return getTimeForPlayer($playerName, "m");
 });
 
-VPlaceHolder::registerPlaceHolder("{year}", function (string $player): string {
-    return getTimeForPlayer($player, "Y");
+VPlaceHolder::registerPlaceHolder("{year}", function (string $playerName): string {
+    return getTimeForPlayer($playerName, "Y");
 });
 
-VPlaceHolder::registerPlaceHolder("{world_name}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
+VPlaceHolder::registerPlaceHolder("{world_name}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
     if ($playerInstance === null) return "Player not found";
     
     return $playerInstance->getWorld()->getFolderName();
 });
 
-VPlaceHolder::registerPlaceHolder("{health}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
+VPlaceHolder::registerPlaceHolder("{health}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
     if ($playerInstance === null) return "Player not found";
     
     return (string)$playerInstance->getHealth();
 });
 
-VPlaceHolder::registerPlaceHolder("{hunger}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
+VPlaceHolder::registerPlaceHolder("{hunger}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
     if ($playerInstance === null) return "Player not found";
     
     return (string)$playerInstance->getHungerManager()->getFood();
 });
 
-VPlaceHolder::registerPlaceHolder("{id_item}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
+VPlaceHolder::registerPlaceHolder("{id_item}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
     if ($playerInstance === null) return "Player not found";
     
     $item = $playerInstance->getInventory()->getItemInHand();
     return (string)$item->getId();
 });
 
-VPlaceHolder::registerPlaceHolder("{dame_item}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
+VPlaceHolder::registerPlaceHolder("{dame_item}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
     if ($playerInstance === null) return "Player not found";
     
     $item = $playerInstance->getInventory()->getItemInHand();
     return (string)$item->getDamage();
 });
 
-VPlaceHolder::registerPlaceHolder("{duration_item}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
+VPlaceHolder::registerPlaceHolder("{duration_item}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
     if ($playerInstance === null) return "Player not found";
     
     $item = $playerInstance->getInventory()->getItemInHand();
     return (string)$item->getMaxDurability();
 });
 
-VPlaceHolder::registerPlaceHolder("{x}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
+VPlaceHolder::registerPlaceHolder("{x}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
     if ($playerInstance === null) return "Player not found";
     
     return (string)$playerInstance->getPosition()->getX();
 });
 
-VPlaceHolder::registerPlaceHolder("{y}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
+VPlaceHolder::registerPlaceHolder("{y}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
     if ($playerInstance === null) return "Player not found";
     
     return (string)$playerInstance->getPosition()->getY();
 });
 
-VPlaceHolder::registerPlaceHolder("{z}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
+VPlaceHolder::registerPlaceHolder("{z}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
     if ($playerInstance === null) return "Player not found";
     
     return (string)$playerInstance->getPosition()->getZ();
