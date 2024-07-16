@@ -18,7 +18,7 @@ VPlaceHolder::registerPlaceHolder("{pprank}", function(string $player) : string{
   
   if(Server::getInstance()->getPluginManager()->getPlugin("PurePerms") !== null){
     $pprank = PurePerms::getInstance()->getUserDataMgr()->getGroup($player);
-    return $pprank["group"]
+    return $pprank["group"];
   }
   
   return "none";
