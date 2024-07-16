@@ -8,7 +8,7 @@ use IvanCraft623\RankSystem\RankSystem;
 use IvanCraft623\RankSystem\utils\Utils;
 
 $version = "1.0.0";
-$author = "ClickedTran | ClickedTran_VN";
+$author = "ClickedTran (ClickedTran_VN)";
 
 #{pprank} = PurePerms
 #{rsrank} = Ranksystem
