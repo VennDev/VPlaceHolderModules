@@ -29,7 +29,7 @@ if (!class_exists(ResultQuery::class)) {
 
 VPlaceHolder::registerPlaceHolder("{vpds_get_name_player_by_xuid}", function (string $xuid): Async {
     return new Async(function () use ($xuid) {
-        $data = Async::await(VPlayerDataSaver::getDataByXuid($xuid));
+        $data = Async::await(Async::await(VPlayerDataSaver::getDataByXuid($xuid)));
         if ($data instanceof ResultQuery) $data = $data->getResult();
         return $data["name"];
     });
