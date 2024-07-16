@@ -12,8 +12,8 @@ use DaPigGuy\PiggyEconomy\PiggyEconomy;
 $version = "1.0.0";
 $author = "junggamyeon";
 
-VPlaceHolder::registerPlaceHolder("{ecoapi}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
+VPlaceHolder::registerPlaceHolder("{ecoapi}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
     if ($playerInstance === null) return "Plugin not found";
     
     if (class_exists(EconomyAPI::class)) {
@@ -24,8 +24,8 @@ VPlaceHolder::registerPlaceHolder("{ecoapi}", function (string $player): string 
     return "Plugin not found";
 });
 
-VPlaceHolder::registerPlaceHolder("{bedrockeco}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
+VPlaceHolder::registerPlaceHolder("{bedrockeco}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
     if ($playerInstance === null) return "Plugin not found";
 
     if (class_exists(BedrockEconomy::class)) {
@@ -37,8 +37,8 @@ VPlaceHolder::registerPlaceHolder("{bedrockeco}", function (string $player): str
     return "Plugin not found";
 });
 
-VPlaceHolder::registerPlaceHolder("{piggyeco}", function (string $player): string {
-    $playerInstance = Server::getInstance()->getPlayerExact($player);
+VPlaceHolder::registerPlaceHolder("{piggyeco}", function (string $playerName): string {
+    $playerInstance = Server::getInstance()->getPlayerExact($playerName);
     if ($playerInstance === null) return "Plugin not found";
 
     if (class_exists(PiggyEconomy::class)) {
