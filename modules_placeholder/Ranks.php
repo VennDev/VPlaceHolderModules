@@ -13,25 +13,25 @@ $author = "ClickedTran(ClickedTran_VN)";
 #{pprank} = PurePerms
 #{rsrank} = Ranksystem
 
-VPlaceHolder::registerPlaceHolder("{pprank}", function(string $player) : string{
-  $playerName = Server::getInstance()->getPlayerExtract($player);
-  if(is_null($playerName)) return "none";
+VPlaceHolder::registerPlaceHolder("{pprank}", function(string $playerName) : string{
+  $player = Server::getInstance()->getPlayerExtract($playerName);
+  if(is_null($player)) return "none";
   
   if(Server::getInstance()->getPluginManager()->getPlugin("PurePerms") !== null){
-    $pprank = PurePerms::getInstance()->getUserDataMgr()->getGroup($player);
+    $pprank = PurePerms::getInstance()->getUserDataMgr()->getGroup($playerName);
     return $pprank["group"];
   }
   
   return "none";
 });
 
-VPlaceHolder::registerPlaceHolder("{rsrank}", function(string $player) : string {
-  $playerName = Server::getInstance()->getPlayerExtract($player);
+VPlaceHolder::registerPlaceHolder("{rsrank}", function(string $playerName) : string {
+  $player = Server::getInstance()->getPlayerExtract($playerName);
   
-  if(is_null($playerName)) return "none";
+  if(is_null($player)) return "none";
   
   if(Server::getInstance()->getPluginManager()->getPlugin("RankSystem") !== null){
-    $rsrank = RankSystem::getInstance()->getSessionManager()->get($playerName);
+    $rsrank = RankSystem::getInstance()->getSessionManager()->get($player);
     return Utils::ranks2string($rsrank->getRanks());
   }
   
