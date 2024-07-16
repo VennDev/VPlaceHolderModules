@@ -9,6 +9,9 @@ use cooldogedev\bedrockeconomy\BedrockEconomy;
 use cooldogedev\bedrockeconomy\api\BedrockEconomyAPI;
 use DaPigGuy\PiggyEconomy\PiggyEconomy;
 
+$version = "1.0.0";
+$author = "junggamyeon";
+
 VPlaceHolder::registerPlaceHolder("{ecoapi}", function (string $player): string {
     $playerInstance = Server::getInstance()->getPlayerExact($player);
     if ($playerInstance === null) return "Plugin not found";
